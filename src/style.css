@@ -681,46 +681,42 @@ body.dark-mode .pagination .page-link:disabled {
 /* --- Адаптивність для мобільних --- */
 @media (max-width: 768px) {
     header {
-        display: flex;
-        flex-direction: column; /* Все в стовпчик */
-        align-items: center;    /* Все по центру */
-        height: auto;           /* Висота підлаштовується під контент */
-        padding: 20px 10px;     /* Відступи зверху і знизу */
-        gap: 20px;              /* Відстань між лого, кнопкою і меню */
+        display: flex !important;
+        flex-direction: column !important; /* Жорстко ставимо в стовпчик */
+        align-items: center !important;    /* Жорстко центруємо */
+        height: auto !important;           /* Дозволяємо висоті рости */
+        padding: 20px 0 !important;        /* Відступи зверху і знизу */
+        gap: 20px !important;              /* Відстань між елементами */
     }
 
-    /* 1. Логотип - найвище */
-    .logo, header > a {
-        order: 1;
-        width: auto;
-        margin: 0;
+    /* Логотип */
+    header .logo, header > a {
+        order: 1 !important;
+        margin: 0 !important;
+        position: static !important;
     }
 
-    /* 2. Кнопка теми - ПОСЕРЕДИНІ */
+    /* Кнопка теми */
     button#theme-toggle {
-        order: 2;
-        position: static; /* Відліплюємо кнопку від краю екрану */
-        transform: none;  /* Прибираємо зсуви */
-        margin: 0;
-        width: auto;      /* Щоб вона не була занадто широкою */
-        min-width: 120px; /* Мінімальна ширина для краси */
+        order: 2 !important;
+        margin: 0 !important;
+        position: static !important; /* Відліплюємо від будь-яких країв */
+        transform: none !important;
+        width: 140px !important;     /* Фіксована ширина кнопки */
     }
 
-    /* 3. Меню - в самому низу */
+    /* Меню */
     nav {
-        order: 3;
-        width: 100%;
+        order: 3 !important;
+        width: 100% !important;
+        margin: 0 !important;
     }
 
     nav ul {
-        display: flex;
-        flex-direction: column; /* Пункти меню теж у стовпчик, щоб було зручно тицяти */
-        align-items: center;
-        padding: 0;
-        gap: 15px; /* Відстань між словами в меню */
-    }
-    
-    nav ul li {
-        margin: 0;
+        display: flex !important;
+        flex-direction: column !important; /* Пункти меню в стовпчик */
+        align-items: center !important;
+        gap: 15px !important;
+        padding: 0 !important;
     }
 }
