@@ -678,36 +678,49 @@ body.dark-mode .pagination .page-link:disabled {
 }
 
 
-/* --- Адаптивність для мобільних (код вставити в кінець файлу) --- */
+/* --- Адаптивність для мобільних --- */
 @media (max-width: 768px) {
     header {
-        flex-direction: column; /* Вишукує елементи у стовпчик */
-        align-items: center;    /* Центрує все по горизонталі */
-        gap: 15px;              /* Відступи між елементами */
-        padding-bottom: 20px;
+        display: flex;
+        flex-direction: column; /* Все в стовпчик */
+        align-items: center;    /* Все по центру */
+        height: auto;           /* Висота підлаштовується під контент */
+        padding: 20px 10px;     /* Відступи зверху і знизу */
+        gap: 20px;              /* Відстань між лого, кнопкою і меню */
     }
 
-    /* 1. Логотип (MyPortfolio) ставимо першим */
-    header .logo, header > a { 
+    /* 1. Логотип - найвище */
+    .logo, header > a {
         order: 1;
+        width: auto;
+        margin: 0;
     }
 
-    /* 2. Кнопку теми ставимо другою (ПІД логотипом) */
+    /* 2. Кнопка теми - ПОСЕРЕДИНІ */
     button#theme-toggle {
         order: 2;
-        margin: 0;       /* Прибираємо зайві відступи */
-        width: auto;     /* Кнопка займає стільки місця, скільки треба */
+        position: static; /* Відліплюємо кнопку від краю екрану */
+        transform: none;  /* Прибираємо зсуви */
+        margin: 0;
+        width: auto;      /* Щоб вона не була занадто широкою */
+        min-width: 120px; /* Мінімальна ширина для краси */
     }
 
-    /* 3. Меню ставимо третім (внизу) */
+    /* 3. Меню - в самому низу */
     nav {
         order: 3;
         width: 100%;
     }
 
     nav ul {
-        justify-content: center; /* Центруємо пункти меню */
-        flex-wrap: wrap;         /* Дозволяємо перенос слів */
-        gap: 15px;
+        display: flex;
+        flex-direction: column; /* Пункти меню теж у стовпчик, щоб було зручно тицяти */
+        align-items: center;
+        padding: 0;
+        gap: 15px; /* Відстань між словами в меню */
+    }
+    
+    nav ul li {
+        margin: 0;
     }
 }
