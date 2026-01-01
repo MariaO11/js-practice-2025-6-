@@ -1,13 +1,207 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="uk">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>portfolio</title>
+    <title>Personal Portfolio | Web Developer</title>
+    <link rel="stylesheet" href="/src/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+    <div id="app">
+      <header class="header">
+        <div class="container header-content">
+          <a href="#" class="logo">MyPortfolio</a>
+          <nav class="nav">
+            <ul class="nav-list">
+              <li><a href="#about">Про мене</a></li>
+              <li><a href="#skills">Навички</a></li>
+              <li><a href="#projects">Проєкти</a></li>
+              <li><a href="#contact">Контакти</a></li>
+            </ul>
+          </nav>
+          
+          <button id="theme-toggle" class="theme-btn" aria-label="Змінити тему">
+            Theme
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section id="hero" class="hero-section">
+          <div class="container">
+            <h1>Привіт, я <span class="highlight">Web-розробник</span></h1>
+            <p>Створюю сучасні інтерфейси у фіолетово-блакитних тонах</p>
+            <div class="hero-buttons">
+              <a href="#projects" class="btn-primary">Мої роботи</a>
+              <a href="#contact" class="btn-secondary">Зв'язатись</a>
+            </div>
+          </div>
+        </section>
+        
+        <section id="skills" class="section">
+          <div class="container">
+            <h2>Мої навички</h2>
+            <ul id="skills-list" class="skills-grid"></ul>
+          </div>
+        </section>
+
+        <section id="projects" class="section">
+          <div class="container">
+            <h2>Мої проєкти</h2>
+    
+            <div class="filter-buttons" style="margin-bottom: 20px; text-align: center;">
+            <button onclick="filterProjects('all')" class="btn-secondary" style="margin: 0 5px;">Всі</button>
+            <button onclick="filterProjects('web')" class="btn-secondary" style="margin: 0 5px;">Web</button>
+            <button onclick="filterProjects('db')" class="btn-secondary" style="margin: 0 5px;">Бази даних</button>
+          </div>
+
+        <div id="projects-container" class="projects-grid"></div>
+    
+          <p id="project-count" style="text-align: center; margin-top: 20px; opacity: 0.7;"></p>
+        </div>
+        </section>
+
+        <section id="contact" class="section">
+          <div class="container">
+            <h2>Зв'язатися зі мною</h2>
+            <form id="contact-form" class="contact-form">
+              <div class="form-group">
+                <input type="text" id="name" placeholder="Ваше ім'я" required>
+              </div>
+              <div class="form-group">
+                <input type="email" id="email" placeholder="Ваш Email" required>
+              </div>
+              <div class="form-group">
+                <textarea id="message" rows="5" placeholder="Повідомлення" required></textarea>
+              </div>
+              <button type="submit" class="btn-primary">Надіслати повідомлення</button>
+            </form>
+          </div>
+        </section>
+      
+
+        <section id="api-section" class="py-5 section-api">
+          <div class="container">
+            <h2 class="text-center mb-4">Хвилинка гумору</h2>
+            
+            <div class="row justify-content-center">
+              <div class="col-md-8 col-lg-6">
+                
+                <div class="card text-center shadow custom-card">
+                  <div class="card-header text-white fw-bold">
+                    Генератор жартів
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title text-muted mt-3" id="joke-setup">
+                      Натисніть кнопку...
+                    </h5>
+                    <p class="card-text fs-4 fw-bold highlight my-4" id="joke-punchline">
+                      ???
+                    </p>
+                    <button id="load-joke-btn" class="btn btn-primary px-4">
+                      Отримати жарт
+                    </button>
+                  </div>
+                  <div class="card-footer small">
+                    Джерело: Локальний JSON API
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="github-section" class="py-5 section-api">
+          <div class="container">
+            <h2 class="text-center mb-4">Пошук IT-профілів</h2>
+            
+            <div class="row justify-content-center">
+              <div class="col-md-6 col-lg-5">
+                
+                <div class="card shadow custom-card">
+                  <div class="card-header text-white fw-bold text-center">
+                    GitHub Scanner
+                  </div>
+                  <div class="card-body">
+                    
+                    <label for="gh-username" class="form-label text-muted small">Введіть нікнейм:</label>
+                    <div class="input-group mb-3">
+                      <input type="text" id="gh-username" class="form-control" placeholder="напр. microsoft" value="microsoft">
+                      <button class="btn btn-primary" id="gh-search-btn">Знайти</button>
+                    </div>
+
+                    <div id="gh-loader" class="text-center d-none my-4">
+                      <div class="spinner-border text-primary" role="status"></div>
+                    </div>
+
+                    <div id="gh-error" class="alert alert-danger d-none text-center" role="alert">
+                      Користувача не знайдено!
+                    </div>
+
+                    <div id="gh-result" class="text-center d-none">
+                      <img id="gh-avatar" src="" alt="Avatar" class="rounded-circle mb-3 border border-3" width="100">
+                      <h4 id="gh-name" class="fw-bold">Name</h4>
+                      <p class="text-muted small" id="gh-bio">Bio...</p>
+                      
+                      <hr>
+                      
+                      <div class="d-flex justify-content-around">
+                        <div class="text-center">
+                          <span class="d-block fw-bold fs-4" id="gh-repos">0</span>
+                          <small class="text-muted">Repos</small>
+                        </div>
+                        <div class="text-center">
+                          <span class="d-block fw-bold fs-4" id="gh-followers">0</span>
+                          <small class="text-muted">Followers</small>
+                        </div>
+                      </div>
+
+                      <div id="repos-list" class="mt-3 text-start small">
+                        </div>
+
+                      <nav id="pagination-controls" class="d-none mt-3" aria-label="Навігація">
+                        <ul class="pagination justify-content-center pagination-sm">
+                          
+                          <li class="page-item">
+                            <button class="page-link" id="prev-btn" disabled>Назад</button>
+                          </li>
+                      
+                          <li class="page-item active">
+                            <span class="page-link" id="page-indicator">1</span>
+                          </li>
+                      
+                          <li class="page-item">
+                            <button class="page-link" id="next-btn">Далі</button>
+                          </li>
+                      
+                        </ul>
+                      </nav>
+
+                      <a id="gh-link" href="#" target="_blank" class="btn btn-outline-primary w-100 mt-4">
+                        Перейти на GitHub
+                      </a>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+       </main> 
+
+      <footer class="footer">
+        <div class="container">
+          <p>&copy; 2025 Всі права захищено | Розроблено під час практики</p>
+        </div>
+      </footer>
+      <button id="scrollToTopBtn" class="scroll-top-btn" aria-label="Вгору">↑</button>
+    </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+      <script type="module" src="/src/main.js"></script>
   </body>
 </html>
