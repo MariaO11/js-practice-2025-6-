@@ -681,24 +681,33 @@ body.dark-mode .pagination .page-link:disabled {
 /* --- Адаптивність для мобільних (код вставити в кінець файлу) --- */
 @media (max-width: 768px) {
     header {
-        flex-direction: column; /* Ставить елементи один під одним */
-        height: auto; /* Дозволяє шапці розтягуватися */
-        padding: 15px;
-        gap: 15px;
+        flex-direction: column; /* Вишукує елементи у стовпчик */
+        align-items: center;    /* Центрує все по горизонталі */
+        gap: 15px;              /* Відступи між елементами */
+        padding-bottom: 20px;
+    }
+
+    /* 1. Логотип (MyPortfolio) ставимо першим */
+    header .logo, header > a { 
+        order: 1;
+    }
+
+    /* 2. Кнопку теми ставимо другою (ПІД логотипом) */
+    button#theme-toggle {
+        order: 2;
+        margin: 0;       /* Прибираємо зайві відступи */
+        width: auto;     /* Кнопка займає стільки місця, скільки треба */
+    }
+
+    /* 3. Меню ставимо третім (внизу) */
+    nav {
+        order: 3;
+        width: 100%;
     }
 
     nav ul {
-        flex-wrap: wrap; /* Дозволяє пунктам меню переноситися */
-        justify-content: center; /* Центрує меню */
-        padding: 0;
-        gap: 10px;
-    }
-
-    /* Робимо кнопку теми красивою по центру */
-    button#theme-toggle {
-        margin-left: 0;
-        width: 100%;
-        max-width: 200px;
-        justify-content: center;
+        justify-content: center; /* Центруємо пункти меню */
+        flex-wrap: wrap;         /* Дозволяємо перенос слів */
+        gap: 15px;
     }
 }
