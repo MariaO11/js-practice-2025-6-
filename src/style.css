@@ -676,3 +676,29 @@ body.dark-mode .pagination .page-link:disabled {
   color: #4b5563 !important;
   border-color: #30475e !important;
 }
+
+
+/* --- Адаптивність для мобільних (код вставити в кінець файлу) --- */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column; /* Ставить елементи один під одним */
+        height: auto; /* Дозволяє шапці розтягуватися */
+        padding: 15px;
+        gap: 15px;
+    }
+
+    nav ul {
+        flex-wrap: wrap; /* Дозволяє пунктам меню переноситися */
+        justify-content: center; /* Центрує меню */
+        padding: 0;
+        gap: 10px;
+    }
+
+    /* Робимо кнопку теми красивою по центру */
+    button#theme-toggle {
+        margin-left: 0;
+        width: 100%;
+        max-width: 200px;
+        justify-content: center;
+    }
+}
