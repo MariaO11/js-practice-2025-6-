@@ -680,43 +680,41 @@ body.dark-mode .pagination .page-link:disabled {
 
 /* --- Адаптивність для мобільних --- */
 @media (max-width: 768px) {
-    header {
+    /* Виправляємо внутрішній контейнер, а не сам header */
+    .header-content {
         display: flex !important;
-        flex-direction: column !important; /* Жорстко ставимо в стовпчик */
-        align-items: center !important;    /* Жорстко центруємо */
-        height: auto !important;           /* Дозволяємо висоті рости */
-        padding: 20px 0 !important;        /* Відступи зверху і знизу */
-        gap: 20px !important;              /* Відстань між елементами */
+        flex-direction: column !important; /* Стовпчик */
+        align-items: center !important;    /* Центр */
+        gap: 20px !important;
     }
 
-    /* Логотип */
-    header .logo, header > a {
+    /* 1. Логотип */
+    .logo {
         order: 1 !important;
         margin: 0 !important;
-        position: static !important;
     }
 
-    /* Кнопка теми */
-    button#theme-toggle {
+    /* 2. Кнопка (звертаємось до класу .theme-btn) */
+    .theme-btn {
         order: 2 !important;
+        width: auto !important;
+        min-width: 150px !important; /* Щоб була зручною */
         margin: 0 !important;
-        position: static !important; /* Відліплюємо від будь-яких країв */
-        transform: none !important;
-        width: 140px !important;     /* Фіксована ширина кнопки */
+        display: block !important;
+        justify-content: center !important;
     }
 
-    /* Меню */
-    nav {
+    /* 3. Меню */
+    nav, .nav-list {
         order: 3 !important;
         width: 100% !important;
-        margin: 0 !important;
     }
 
-    nav ul {
+    .nav-list {
         display: flex !important;
-        flex-direction: column !important; /* Пункти меню в стовпчик */
+        flex-direction: column !important;
         align-items: center !important;
-        gap: 15px !important;
         padding: 0 !important;
+        gap: 15px !important;
     }
 }
